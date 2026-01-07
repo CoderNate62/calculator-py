@@ -19,12 +19,12 @@ def main():
             color: #ffffff !important;
         }
         
-        /* Base Button styling (Numbers - Dark Grey) */
+        /* Base Button styling (Numbers - Lighter Grey) */
         div.stButton > button {
-            background-color: #2d2d2d;
+            background-color: #3d3d3d;
             color: #ffffff;
             border-radius: 15px;
-            border: 1px solid #3d3d3d;
+            border: 1px solid #4d4d4d;
             height: 60px;
             font-size: 20px;
             font-weight: 500;
@@ -32,11 +32,16 @@ def main():
         }
         
         div.stButton > button:hover {
-            background-color: #3d3d3d;
-            border-color: #555;
+            background-color: #4d4d4d;
+            border-color: #666;
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
+
+        /* ... (omit intermediate unchanged chunks if possible, but replace_file_content needs contiguous block. 
+           Wait, there are many lines between base button and equals.
+           I should definitely use multi_replace for this to avoid replacing the big block of function selectors.
+        */
         
         div.stButton > button:active {
             transform: translateY(1px);
@@ -79,11 +84,11 @@ def main():
              border-color: #4facfe !important;
         }
 
-        /* ----- Equals Button (Bright Blue) ----- */
+        /* ----- Equals Button (Darker Blue) ----- */
         /* Row 4 (Index 7): Col 3 (=) */
         div[data-testid="stVerticalBlock"] > div:nth-of-type(7) [data-testid="stColumn"]:nth-of-type(3) button {
-            background-color: #007AFF !important;
-            border-color: #007AFF !important;
+            background-color: #0056b3 !important;
+            border-color: #0056b3 !important;
             font-weight: bold;
         }
 
