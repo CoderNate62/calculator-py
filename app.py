@@ -117,14 +117,14 @@ def main():
     c1.button("1", on_click=input_number, args=('1',), use_container_width=True)
     c2.button("2", on_click=input_number, args=('2',), use_container_width=True)
     c3.button("3", on_click=input_number, args=('3',), use_container_width=True)
-    c4.button("-", on_click=set_operator, args=('-',), use_container_width=True)
+    c4.button("−", on_click=set_operator, args=('-',), use_container_width=True)
 
     # Row 4: C, 0, =, +
     c1, c2, c3, c4 = st.columns(4)
     c1.button("C", on_click=clear, use_container_width=True)
     c2.button("0", on_click=input_number, args=('0',), use_container_width=True)
     c3.button("=", on_click=calculate, use_container_width=True)
-    c4.button("+", on_click=set_operator, args=('+',), use_container_width=True)
+    c4.button("＋", on_click=set_operator, args=('+',), use_container_width=True)
 
 if __name__ == "__main__":
     main()
