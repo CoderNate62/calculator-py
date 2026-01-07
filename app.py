@@ -89,6 +89,7 @@ def main():
             text-align: right;
             margin-bottom: 20px;
             background-color: #222;
+            color: #ffffff;
         ">
             {st.session_state.display}
         </div>
