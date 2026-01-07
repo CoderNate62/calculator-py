@@ -6,6 +6,61 @@ def main():
     st.set_page_config(page_title="Calculator", page_icon="🧮")
     st.title("Nate's Simple Calculator")
 
+    # Custom CSS for modern, premium look
+    st.markdown("""
+        <style>
+        /* Main background */
+        .stApp {
+            background-color: #1e1e1e;
+        }
+
+        /* Title styling */
+        h1, .stTitle {
+            color: #ffffff !important;
+        }
+        
+        /* Button styling */
+        div.stButton > button {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border-radius: 15px;
+            border: 1px solid #3d3d3d;
+            height: 60px;
+            font-size: 20px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        div.stButton > button:hover {
+            background-color: #3d3d3d;
+            border-color: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        
+        div.stButton > button:active {
+            transform: translateY(1px);
+        }
+
+        /* Accent buttons (operators) - Using nth-child approximation or just general style */
+        /* Currently universal style, but dark grey is sleek */
+
+        /* Display Screen styling */
+        .calc-display {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 42px;
+            font-family: 'Roboto', sans-serif;
+            text-align: right;
+            margin-bottom: 25px;
+            border: 1px solid #333;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
     # Initialize calculator logic
     calc = Calculator()
 
@@ -98,16 +153,7 @@ def main():
     # Display Screen
     st.markdown(
         f"""
-        <div style="
-            border: 2px solid #555;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 30px;
-            text-align: right;
-            margin-bottom: 20px;
-            background-color: #222;
-            color: #ffffff;
-        ">
+        <div class="calc-display">
             {st.session_state.display}
         </div>
         """,
