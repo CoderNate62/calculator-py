@@ -1,5 +1,6 @@
 import streamlit as st
 from calculator import Calculator
+import math
 
 def main():
     st.set_page_config(page_title="Calculator", page_icon="🧮")
@@ -52,6 +53,8 @@ def main():
                     result = calc.multiply(st.session_state.stored_value, current_val)
                 elif op == '/':
                     result = calc.divide(st.session_state.stored_value, current_val)
+                elif op == '^':
+                    result = calc.power(st.session_state.stored_value, current_val)
                 
                 # Format result
                 if result.is_integer():
@@ -75,10 +78,24 @@ def main():
         st.session_state.pending_operator = None
         st.session_state.reset_next = False
 
+    # Unary Operations (Immediate execution)
+    def unary_operation(op_func):
+        try:
+            current_val = float(st.session_state.display)
+            result = op_func(current_val)
+             # Format result
+            if result.is_integer():
+                st.session_state.display = str(int(result))
+            else:
+                st.session_state.display = str(result)
+            st.session_state.reset_next = True
+        except Exception as e:
+             st.session_state.display = "Error"
+             st.session_state.reset_next = True
+
     # UI Layout
     
     # Display Screen
-    # Using markdown to create a styled box or just a large text
     st.markdown(
         f"""
         <div style="
@@ -97,34 +114,48 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Grid Layout
-    # Row 1: 7, 8, 9, /
-    c1, c2, c3, c4 = st.columns(4)
+    # Grid Layout - 5 columns for Scientific Calculator
+    # Row 1: 7, 8, 9, /, ^ (Power)
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.button("7", on_click=input_number, args=('7',), use_container_width=True)
     c2.button("8", on_click=input_number, args=('8',), use_container_width=True)
     c3.button("9", on_click=input_number, args=('9',), use_container_width=True)
     c4.button("÷", on_click=set_operator, args=('/',), use_container_width=True)
+    c5.button("^", on_click=set_operator, args=('^',), use_container_width=True)
 
-    # Row 2: 4, 5, 6, *
-    c1, c2, c3, c4 = st.columns(4)
+    # Row 2: 4, 5, 6, *, √ (Sqrt)
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.button("4", on_click=input_number, args=('4',), use_container_width=True)
     c2.button("5", on_click=input_number, args=('5',), use_container_width=True)
     c3.button("6", on_click=input_number, args=('6',), use_container_width=True)
     c4.button("×", on_click=set_operator, args=('*',), use_container_width=True)
+    c5.button("√", on_click=unary_operation, args=(calc.sqrt,), use_container_width=True)
 
-    # Row 3: 1, 2, 3, -
-    c1, c2, c3, c4 = st.columns(4)
+    # Row 3: 1, 2, 3, -, log
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.button("1", on_click=input_number, args=('1',), use_container_width=True)
     c2.button("2", on_click=input_number, args=('2',), use_container_width=True)
     c3.button("3", on_click=input_number, args=('3',), use_container_width=True)
     c4.button("−", on_click=set_operator, args=('-',), use_container_width=True)
+    c5.button("log", on_click=unary_operation, args=(calc.log,), use_container_width=True)
 
-    # Row 4: C, 0, =, +
-    c1, c2, c3, c4 = st.columns(4)
+    # Row 4: C, 0, =, +, Const (pi, e - simplified to just constants inputs for now or maybe trig)
+    # Let's do Trig: sin, cos, tan
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.button("C", on_click=clear, use_container_width=True)
     c2.button("0", on_click=input_number, args=('0',), use_container_width=True)
     c3.button("=", on_click=calculate, use_container_width=True)
     c4.button("＋", on_click=set_operator, args=('+',), use_container_width=True)
+    c5.button("sin", on_click=unary_operation, args=(calc.sin,), use_container_width=True)
+
+    # Row 5: Extra Scientific: cos, tan, pi, e
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.button("cos", on_click=unary_operation, args=(calc.cos,), use_container_width=True)
+    c2.button("tan", on_click=unary_operation, args=(calc.tan,), use_container_width=True)
+    c3.button("π", on_click=input_number, args=(math.pi,), use_container_width=True)
+    c4.button("e", on_click=input_number, args=(math.e,), use_container_width=True)
+    # Empty 5th button or could be something else
+    c5.empty()
 
 if __name__ == "__main__":
     main()

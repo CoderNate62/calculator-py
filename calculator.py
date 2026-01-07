@@ -1,4 +1,5 @@
 import sys
+import math
 
 class Calculator:
     def add(self, a, b):
@@ -14,6 +15,28 @@ class Calculator:
         if b == 0:
             raise ValueError("Cannot divide by zero")
         return a / b
+
+    def power(self, a, b):
+        return math.pow(a, b)
+
+    def sqrt(self, a):
+        if a < 0:
+            raise ValueError("Cannot calculate square root of a negative number")
+        return math.sqrt(a)
+
+    def log(self, a):
+        if a <= 0:
+            raise ValueError("Logarithm undefined for non-positive numbers")
+        return math.log(a)
+
+    def sin(self, a):
+        return math.sin(a)
+
+    def cos(self, a):
+        return math.cos(a)
+
+    def tan(self, a):
+        return math.tan(a)
 
 def main():
     calc = Calculator()

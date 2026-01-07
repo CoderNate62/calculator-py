@@ -25,5 +25,26 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.calc.divide(5, 0)
 
+    def test_power(self):
+        self.assertEqual(self.calc.power(2, 3), 8)
+        self.assertEqual(self.calc.power(5, 0), 1)
+
+    def test_sqrt(self):
+        self.assertEqual(self.calc.sqrt(9), 3)
+        with self.assertRaises(ValueError):
+            self.calc.sqrt(-1)
+
+    def test_log(self):
+        import math
+        self.assertAlmostEqual(self.calc.log(math.e), 1)
+        with self.assertRaises(ValueError):
+            self.calc.log(0)
+
+    def test_trig(self):
+        import math
+        self.assertAlmostEqual(self.calc.sin(0), 0)
+        self.assertAlmostEqual(self.calc.cos(0), 1)
+        self.assertAlmostEqual(self.calc.tan(0), 0)
+
 if __name__ == '__main__':
     unittest.main()
