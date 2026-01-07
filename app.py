@@ -3,7 +3,7 @@ from calculator import Calculator
 
 def main():
     st.set_page_config(page_title="Calculator", page_icon="🧮")
-    st.title("Physical Calculator")
+    st.title("Nate's Simple Calculator")
 
     # Initialize calculator logic
     calc = Calculator()
