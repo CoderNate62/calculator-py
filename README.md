@@ -26,27 +26,32 @@ This project combines powerful mathematical capabilities with an adorable feline
 
 ## 🛠️ Tech Stack
 
-*   **Python**: Core logic.
-*   **Streamlit**: Web framework for the interactive UI.
-*   **CSS**: Custom styling for the unique layout.
+*   **HTML/CSS/JavaScript**: Static web version (recommended for deployment).
+*   **Python + Streamlit**: Original version.
+*   **CSS**: Custom styling with animations.
 
-## 🚀 How to Run
+## 🚀 Deploy to Vercel (Recommended)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/CoderNate62/calculator-py.git
-    cd calculator-py
-    ```
+The static version (`index.html`, `styles.css`, `script.js`) can be deployed to Vercel for free hosting with no sleep issues:
 
-2.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+1.  **Push to GitHub** (if not already done).
+2.  **Import to Vercel**: Go to [vercel.com](https://vercel.com), click "New Project", and import your repo.
+3.  **Deploy**: Vercel auto-detects static sites. Click Deploy!
 
-3.  **Run the app:**
-    ```bash
-    streamlit run app.py
-    ```
+Your Catculator will be live 24/7 with no sleep notifications! 🎉
+
+## 🏠 Run Locally
+
+### Static Version (Open in Browser)
+Simply open `index.html` in your web browser.
+
+### Streamlit Version
+```bash
+git clone https://github.com/NateDevIO/calculator-py.git
+cd calculator-py
+pip install -r requirements.txt
+streamlit run app.py
+```
 
 ## 🧪 Testing
 

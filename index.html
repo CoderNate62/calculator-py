@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catculator 🐱</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Decorations -->
+    <div class="floating-decorations">
+        <span class="paw-print" style="top: 10%; left: 5%;">🐾</span>
+        <span class="paw-print" style="top: 30%; right: 8%; animation-delay: 1s;">🐾</span>
+        <span class="paw-print" style="top: 70%; left: 3%; animation-delay: 2s;">🐾</span>
+        <span class="fish" style="top: 15%; right: 5%;">🐟</span>
+        <span class="fish" style="top: 50%; left: 2%; animation-delay: 1.5s;">🐟</span>
+        <span class="fish" style="bottom: 20%; right: 3%; animation-delay: 3s;">🐟</span>
+        <span class="yarn" style="top: 25%; left: 8%;">🧶</span>
+        <span class="yarn" style="bottom: 30%; right: 6%; animation-delay: 0.5s;">🧶</span>
+    </div>
+
+    <!-- Main Calculator Container -->
+    <div class="calculator-container">
+        <!-- Title -->
+        <div class="catculator-title">🐱 Catculator 🐱</div>
+
+        <!-- Display -->
+        <div class="calc-display">
+            <span class="cat-reaction" id="catReaction">😺</span>
+            <span id="display">0</span>
+        </div>
+
+        <!-- Belly Spacer -->
+        <div class="belly-spacer"></div>
+
+        <!-- Button Grid -->
+        <div class="button-grid">
+            <!-- Row 1: 7, 8, 9, ÷, ^ -->
+            <div class="button-row">
+                <button class="btn btn-number" onclick="inputNumber('7')">7</button>
+                <button class="btn btn-number" onclick="inputNumber('8')">8</button>
+                <button class="btn btn-number" onclick="inputNumber('9')">9</button>
+                <button class="btn btn-function" onclick="setOperator('/')">÷</button>
+                <button class="btn btn-function" onclick="setOperator('^')">^</button>
+            </div>
+
+            <!-- Row 2: 4, 5, 6, ×, √ -->
+            <div class="button-row">
+                <button class="btn btn-number" onclick="inputNumber('4')">4</button>
+                <button class="btn btn-number" onclick="inputNumber('5')">5</button>
+                <button class="btn btn-number" onclick="inputNumber('6')">6</button>
+                <button class="btn btn-function" onclick="setOperator('*')">×</button>
+                <button class="btn btn-function" onclick="unaryOperation('sqrt')">√</button>
+            </div>
+
+            <!-- Row 3: 1, 2, 3, −, log -->
+            <div class="button-row">
+                <button class="btn btn-number" onclick="inputNumber('1')">1</button>
+                <button class="btn btn-number" onclick="inputNumber('2')">2</button>
+                <button class="btn btn-number" onclick="inputNumber('3')">3</button>
+                <button class="btn btn-function" onclick="setOperator('-')">−</button>
+                <button class="btn btn-function" onclick="unaryOperation('log')">log</button>
+            </div>
+
+            <!-- Row 4: C, 0, =, +, sin -->
+            <div class="button-row">
+                <button class="btn btn-number" onclick="clearCalc()">C</button>
+                <button class="btn btn-number" onclick="inputNumber('0')">0</button>
+                <button class="btn btn-function" onclick="calculate()">=</button>
+                <button class="btn btn-function" onclick="setOperator('+')">＋</button>
+                <button class="btn btn-function" onclick="unaryOperation('sin')">sin</button>
+            </div>
+
+            <!-- Row 5: cos, tan, π, e, (empty) -->
+            <div class="button-row">
+                <button class="btn btn-function" onclick="unaryOperation('cos')">cos</button>
+                <button class="btn btn-function" onclick="unaryOperation('tan')">tan</button>
+                <button class="btn btn-function" onclick="inputConstant('pi')">π</button>
+                <button class="btn btn-function" onclick="inputConstant('e')">e</button>
+                <div class="btn-placeholder"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Credit -->
+    <div class="footer-credit">Coded by Nate</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+/* Catculator - A cute cat-themed scientific calculator */
+/* Coded by Nate */
+
+/* Keyframe Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+@keyframes float-reverse {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-10deg);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(255, 200, 100, 0.5), 0 3px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 200, 100, 0.8), 0 3px 12px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@keyframes title-bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes button-press {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom paw cursor */
+body,
+body * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='20' rx='8' ry='6' fill='%23D2691E'/%3E%3Ccircle cx='8' cy='12' r='4' fill='%23D2691E'/%3E%3Ccircle cx='16' cy='8' r='4' fill='%23D2691E'/%3E%3Ccircle cx='24' cy='12' r='4' fill='%23D2691E'/%3E%3Ccircle cx='10' cy='18' r='3' fill='%23FFB6C1'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23FFB6C1'/%3E%3Ccircle cx='22' cy='18' r='3' fill='%23FFB6C1'/%3E%3Cellipse cx='16' cy='23' rx='5' ry='4' fill='%23FFB6C1'/%3E%3C/svg%3E") 16 16, auto;
+}
+
+body {
+    background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #87CEEB 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* Floating decorations */
+.floating-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.paw-print {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.3;
+    animation: float 4s ease-in-out infinite;
+}
+
+.fish {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.4;
+    animation: float-reverse 5s ease-in-out infinite;
+}
+
+.yarn {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.35;
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+/* Calculator Container */
+.calculator-container {
+    position: relative;
+    width: 450px;
+    height: 800px;
+    background-image: url("cat_bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Catculator Title */
+.catculator-title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    color: #663300;
+    text-shadow:
+        2px 2px 0px #fff,
+        -2px -2px 0px #fff,
+        2px -2px 0px #fff,
+        -2px 2px 0px #fff,
+        3px 3px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    white-space: nowrap;
+    animation: title-bounce 2s ease-in-out infinite;
+}
+
+/* Display Screen */
+.calc-display {
+    position: absolute;
+    top: 195px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 55px;
+    background: linear-gradient(145deg, #fffef5 0%, #fff8dc 100%);
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 28px;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-weight: bold;
+    text-align: right;
+    border: 3px solid #8B4513;
+    animation: pulse-glow 2s ease-in-out infinite;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: visible;
+}
+
+#display {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Cat reaction emoji */
+.cat-reaction {
+    position: absolute;
+    top: -40px;
+    right: -25px;
+    font-size: 32px;
+    z-index: 1002;
+    animation: wiggle 0.5s ease-in-out;
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* Belly Spacer */
+.belly-spacer {
+    height: 515px;
+}
+
+/* Button Grid */
+.button-grid {
+    padding: 0 20px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+/* Button styling - Paw pad style */
+.btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 45% 45% 50% 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    transition: all 0.15s ease;
+    cursor: inherit;
+}
+
+.btn-placeholder {
+    width: 60px;
+    height: 60px;
+    visibility: hidden;
+}
+
+/* Number buttons - Brown paw pad gradient */
+.btn-number {
+    background: linear-gradient(145deg, #CD853F 0%, #A0522D 50%, #8B4513 100%);
+    color: white;
+    border-color: #5D4037;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn-number:hover {
+    background: linear-gradient(145deg, #DEB887 0%, #CD853F 50%, #A0522D 100%);
+    transform: scale(1.1);
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(255, 200, 100, 0.5);
+}
+
+.btn-number:active {
+    transform: scale(0.95);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Function buttons - Coral/salmon paw pad gradient */
+.btn-function {
+    background: linear-gradient(145deg, #FFA07A 0%, #FA8072 50%, #E9967A 100%);
+    color: white;
+    border-color: #CD5C5C;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.btn-function:hover {
+    background: linear-gradient(145deg, #FFB6A0 0%, #FFA07A 50%, #FA8072 100%);
+    transform: scale(1.1);
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(255, 200, 100, 0.5);
+}
+
+.btn-function:active {
+    transform: scale(0.95);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer credit */
+.footer-credit {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 14px;
+    color: #663300;
+    opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 5px 15px;
+    border-radius: 15px;
+}
