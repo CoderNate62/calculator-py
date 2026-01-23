@@ -248,8 +248,8 @@ body {
 
 /* Belly Spacer */
 .belly-spacer {
-    height: 63%;
-    /* Balance: Low enough for chest, high enough for footer room (was 65%) */
+    height: 67%;
+    /* Push buttons lower onto belly */
     width: 100%;
 }
 
@@ -269,8 +269,8 @@ body {
 
 /* Button styling */
 .btn {
-    width: 11.1%;
-    /* ~50px / 450px */
+    width: 10.5%;
+    /* Slightly smaller for more compact grid */
     aspect-ratio: 1 / 1;
     /* Square buttons */
 
@@ -300,7 +300,7 @@ body {
 }
 
 .btn-placeholder {
-    width: 11.1%;
+    width: 10.5%;
     aspect-ratio: 1 / 1;
     visibility: hidden;
 }
@@ -346,8 +346,8 @@ body {
 /* Footer credit - Position relative to container */
 .footer-credit {
     position: absolute;
-    bottom: 2%;
-    /* 15px / 800px approx */
+    bottom: 0.5%;
+    /* At very bottom to clear buttons */
     left: 50%;
     transform: translateX(-50%);
 
